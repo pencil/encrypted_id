@@ -45,6 +45,5 @@ DEPENDENCIES
   activerecord (>= 3.0.0)
   bundler (~> 1.2.0)
   jeweler (~> 1.8.4)
-  rdoc (~> 3.12)
   rspec (~> 2.8.0)
   sqlite3
