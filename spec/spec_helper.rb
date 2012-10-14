@@ -8,5 +8,12 @@ require 'encrypted_id'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  
+  c = ActiveRecord::Base.establish_connection(
+    adapter: 'sqlite3',
+    database: 'spec/test.sqlite3'
+  )
+  ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'users'")
+  ActiveRecord::Base.connection.create_table(:users) do |t|
+    t.timestamps
+  end
 end
