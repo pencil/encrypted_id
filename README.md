@@ -1,4 +1,4 @@
-# encrypted_id
+# encrypted_id [![Build Status](https://secure.travis-ci.org/pencil/encrypted_id.png)](http://travis-ci.org/pencil/encrypted_id)
 
 Sometimes you don't want your users to see the actual ID of your databases entries. This gem allows you to hide the ID.
 
