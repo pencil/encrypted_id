@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "encrypted_id"
   gem.homepage = "http://github.com/pencil/encrypted_id"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Allows you to encrypt the ID of your ActiveRecord model."
+  gem.description = "Sometimes you don't want your users to see the actual ID of your databases entries. This gem allows you to hide the ID."
   gem.email = "ncaspar@me.com"
   gem.authors = ["Nils Caspar"]
   # dependencies defined in Gemfile
@@ -29,11 +29,6 @@ require 'rspec/core'
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
-end
-
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
 end
 
 task :default => :spec
