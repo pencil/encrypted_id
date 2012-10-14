@@ -9,8 +9,8 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   c = ActiveRecord::Base.establish_connection(
-    adapter: 'sqlite3',
-    database: 'spec/test.sqlite3'
+    :adapter => 'sqlite3',
+    :database => 'spec/test.sqlite3'
   )
   [:users, :animals].each do |table|
     ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS '#{table}'")
