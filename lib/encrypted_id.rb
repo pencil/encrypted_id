@@ -1,4 +1,5 @@
 require 'openssl'
+require 'active_record'
 
 module EncryptedId
 
