@@ -12,8 +12,10 @@ RSpec.configure do |config|
     adapter: 'sqlite3',
     database: 'spec/test.sqlite3'
   )
-  ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'users'")
-  ActiveRecord::Base.connection.create_table(:users) do |t|
-    t.timestamps
+  [:users, :animals].each do |table|
+    ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS '#{table}'")
+    ActiveRecord::Base.connection.create_table(table) do |t|
+      t.timestamps
+    end
   end
 end
