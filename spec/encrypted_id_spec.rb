@@ -11,7 +11,7 @@ describe 'EncryptedId' do
       { 15 => '2f71ba22a8e6975db0f13b7e3db6d9cd', 8 => '6916a1adba452d3fffde6e444ae1ad3a' }
     )
   ].each do |description|
-    describe "in the #{description.model}.name model" do
+    describe "in the #{description.model} model" do
       before(:each) do
         @model = description.model
         @test_ids = description.test_ids
@@ -35,10 +35,16 @@ describe 'EncryptedId' do
         expect { @model.find 1 }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
-      it 'should be possible to reload an entity' do
+      it 'should allow us to reload an entity' do
         @entity.id = 7
         @entity.save!
         @entity.reload.should == @entity
+      end
+
+      it 'should allow us to use find with :all' do
+        @entity.id = 99
+        @entity.save!
+        @model.find(:all).should include(@entity)
       end
     end
   end

@@ -32,7 +32,7 @@ module EncryptedId
     def find(*args)
       scope = args.slice!(0)
       options = args.slice!(0) || {}
-      if has_encrypted_id? && !options[:no_encrypted_id]
+      if !(scope.is_a? Symbol) && has_encrypted_id? && !options[:no_encrypted_id]
         begin
           scope = EncryptedId.decrypt(encrypted_id_key, "#{scope}")
         rescue OpenSSL::Cipher::CipherError
