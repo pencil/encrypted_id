@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "encrypted_id"
-  s.version = "1.0.0"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Nils Caspar"]
-  s.date = "2012-10-14"
+  s.date = "2012-10-15"
   s.description = "Sometimes you don't want your users to see the actual ID of your databases entries. This gem allows you to hide the ID."
   s.email = "ncaspar@me.com"
   s.extra_rdoc_files = [
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "encrypted_id.gemspec",
     "lib/encrypted_id.rb",
     "spec/encrypted_id_spec.rb",
     "spec/spec_helper.rb",
