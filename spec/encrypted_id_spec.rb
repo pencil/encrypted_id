@@ -34,6 +34,12 @@ describe 'EncryptedId' do
         @entity.save!
         expect { @model.find 1 }.to raise_error(ActiveRecord::RecordNotFound)
       end
+
+      it 'should be possible to reload an entity' do
+        @entity.id = 7
+        @entity.save!
+        @entity.reload.should == @entity
+      end
     end
   end
 end

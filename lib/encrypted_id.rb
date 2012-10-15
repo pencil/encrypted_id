@@ -11,6 +11,7 @@ module EncryptedId
     include InstanceMethods
     cattr_accessor :encrypted_id_key
     self.encrypted_id_key = Digest::SHA256.digest(options[:key] || encrypted_id_default_key)
+    self.define_singleton_method(:find_single, lambda { puts "foo" })
   end
 
   def self.decrypt(key, id)
@@ -29,14 +30,17 @@ module EncryptedId
 
   module ClassMethods
     def find(*args)
-      if has_encrypted_id?
+      scope = args.slice!(0)
+      options = args.slice!(0) || {}
+      if has_encrypted_id? && !options[:no_encrypted_id]
         begin
-          args[0] = EncryptedId.decrypt(encrypted_id_key, "#{args[0]}")
+          scope = EncryptedId.decrypt(encrypted_id_key, "#{scope}")
         rescue OpenSSL::Cipher::CipherError
           raise ActiveRecord::RecordNotFound.new("Could not decrypt ID #{args[0]}")
         end
       end
-      super(*args)
+      options.delete(:no_encrypted_id)
+      super(scope, options)
     end
 
     def has_encrypted_id?
@@ -51,6 +55,11 @@ module EncryptedId
   module InstanceMethods
     def to_param
       EncryptedId.encrypt(self.class.encrypted_id_key, self.id)
+    end
+
+    def reload(options = nil)
+      options = (options || {}).merge(:no_encrypted_id => true)
+      super(options)
     end
   end
 end
