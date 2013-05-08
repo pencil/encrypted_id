@@ -57,6 +57,14 @@ module EncryptedId
       EncryptedId.encrypt(self.class.encrypted_id_key, self.id)
     end
 
+    def to_key
+        key = self.id or nil
+        if key
+            key = [EncryptedId.encrypt(self.class.encrypted_id_key, self.id)]
+        end
+        key
+    end
+
     def reload(options = nil)
       options = (options || {}).merge(:no_encrypted_id => true)
       super(options)

@@ -23,6 +23,11 @@ describe 'EncryptedId' do
         @entity.to_param.should == @test_ids[15]
       end
 
+      it 'should give us the encrypted ID (in array) via to_key' do
+        @entity.id = 15
+        @entity.to_key.should == [@test_ids[15]]
+      end
+
       it 'should be possible to find an entry by the encrypted id' do
         @entity.id = 8
         @entity.save!
