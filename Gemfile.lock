@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    encrypted_id (1.1.0)
+    encrypted_id (1.1.1)
       activerecord (>= 3.0.0)
 
 GEM
