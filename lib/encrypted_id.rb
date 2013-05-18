@@ -59,11 +59,11 @@ module EncryptedId
     end
 
     def to_key
-        key = self.id or nil
-        if key
-            key = [EncryptedId.encrypt(self.class.encrypted_id_key, self.id)]
-        end
-        key
+      key = self.id or nil
+      if key
+        key = [EncryptedId.encrypt(self.class.encrypted_id_key, self.id)]
+      end
+      key
     end
 
     def reload(options = nil)
