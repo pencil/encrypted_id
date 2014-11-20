@@ -41,7 +41,7 @@ module EncryptedId
         end
       end
       options.delete(:no_encrypted_id)
-      super(scope, options)
+      super(scope)
     end
 
     def has_encrypted_id?
