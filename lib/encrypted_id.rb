@@ -32,15 +32,15 @@ module EncryptedId
   module ClassMethods
     def find(*args)
       scope = args.slice!(0)
-      options = args.slice!(0) || {}
-      if !(scope.is_a? Symbol) && has_encrypted_id? && !options[:no_encrypted_id]
+      options = args.slice!(0)
+      if !(scope.is_a? Symbol) && has_encrypted_id? && (options.nil? || !options[:no_encrypted_id])
         begin
           scope = EncryptedId.decrypt(encrypted_id_key, "#{scope}")
         rescue OpenSSL::Cipher::CipherError
           raise ActiveRecord::RecordNotFound.new("Could not decrypt ID #{args[0]}")
         end
       end
-      options.delete(:no_encrypted_id)
+      options.delete(:no_encrypted_id) if !options.nil?
       super(scope, options)
     end
 
